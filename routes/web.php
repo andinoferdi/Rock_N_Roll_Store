@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserpageController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('')->group(function () {
+    Route::get('/', [UserpageController::class, 'index'])->name('userpage');
+
+    Route::middleware(['auth'])->group(function () {});
 });
