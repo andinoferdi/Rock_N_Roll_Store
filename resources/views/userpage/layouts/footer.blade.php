@@ -5,7 +5,7 @@
                 <div class="col-lg-5 col-md-6 col-12">
                     <div class="single-footer about">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('assets/images/logo2.png') }}" alt="#"></a>
+                            <a href="index.html"><img src="{{ asset('assets1/images/logo2.png') }}" alt="#"></a>
                         </div>
                         <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,
                             magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="right">
-                            <img src="{{ asset('assets/images/payments.png') }}" alt="#">
+                            <img src="{{ asset('assets1/images/payments.png') }}" alt="#">
                         </div>
                     </div>
                 </div>

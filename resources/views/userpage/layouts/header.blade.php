@@ -4,7 +4,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-12">
                         <div class="logo">
-                            <a href="{{ route('userpage') }}"><img src="{{ asset('assets/images/logo.png') }}"
+                            <a href="{{ route('userpage') }}"><img src="{{ asset('assets1/images/logo.png') }}"
                                     alt="logo"></a>
                         </div>
                         <div class="search-top">
