@@ -36,50 +36,52 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-12">
                         <div class="right-bar">
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o"
-                                        aria-hidden="true"></i></a>
-                            </div>
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-user-circle-o"
-                                        aria-hidden="true"></i></a>
-                            </div>
-                            <div class="sinlge-bar shopping">
-                                <a href="#" class="single-icon"><i class="ti-bag"></i> <span
-                                        class="total-count">2</span></a>
-                                <div class="shopping-item">
-                                    <div class="dropdown-cart-header">
-                                        <span>2 Items</span>
-                                        <a href="#">View Cart</a>
-                                    </div>
-                                    <ul class="shopping-list">
-                                        <li>
-                                            <a href="#" class="remove" title="Remove this item"><i
-                                                    class="fa fa-remove"></i></a>
-                                            <a class="cart-img" href="#"><img
-                                                    src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="#">Woman Ring</a></h4>
-                                            <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="remove" title="Remove this item"><i
-                                                    class="fa fa-remove"></i></a>
-                                            <a class="cart-img" href="#"><img
-                                                    src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="#">Woman Necklace</a></h4>
-                                            <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                        </li>
-                                    </ul>
-                                    <div class="bottom">
-                                        <div class="total">
-                                            <span>Total</span>
-                                            <span class="total-amount">$134.00</span>
-                                        </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                            @guest
+                                <div class="sinlge-bar">
+                                    <a href="#" class="single-icon dropdown-trigger">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu"
+                                        style="display: none; position: absolute; background-color: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); padding: 10px; z-index: 1000;">
+                                        <a href="{{ route('login') }}" class="dropdown-item"
+                                            style="padding: 10px 15px; color: #333; text-decoration: none; display: block;">Login</a>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="sinlge-bar">
+                                    <a href="#" class="single-icon"><i class="fa fa-heart-o"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                                <div class="sinlge-bar">
+                                    <a href="#" class="single-icon dropdown-trigger">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="dropdown-menu"
+                                        style="display: none; position: absolute; background-color: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); padding: 10px; z-index: 1000;">
+                                        <a href="" class="dropdown-item"
+                                            style="padding: 10px 15px; color: #333; text-decoration: none; display: block;">Profile</a>
+                                        @if (auth()->user()->role->nama_role === 'Admin')
+                                            <a href="{{ route('dashboard') }}" class="dropdown-item"
+                                                style="padding: 10px 15px; color: #333; text-decoration: none; display: block;">Dashboard</a>
+                                        @endif
+                                        <a href="{{ route('logout') }}" class="dropdown-item"
+                                            style="padding: 10px 15px; color: #333; text-decoration: none; display: block;"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="sinlge-bar shopping">
+                                    <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                            class="total-count">2</span></a>
+                                </div>
+                            @endguest
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -193,3 +195,32 @@
             </div>
         </div>
     </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownMenu = this.nextElementSibling;
+                    const isVisible = dropdownMenu.style.display === 'block';
+
+                    // Tutup dropdown lain jika ada
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => menu.style.display =
+                        'none');
+
+                    // Tampilkan atau sembunyikan dropdown terkait
+                    dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+
+            // Tutup dropdown jika klik di luar
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.sinlge-bar')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => menu.style.display =
+                        'none');
+                }
+            });
+        });
+    </script>

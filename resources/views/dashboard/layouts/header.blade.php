@@ -1,11 +1,8 @@
 <div id="kt_header" style="" class="header align-items-stretch">
-    <!--begin::Container-->
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
-        <!--begin::Aside mobile toggle-->
         <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
                 id="kt_aside_mobile_toggle">
-                <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
                 <span class="svg-icon svg-icon-2x mt-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
@@ -16,28 +13,20 @@
                             fill="black" />
                     </svg>
                 </span>
-                <!--end::Svg Icon-->
             </div>
         </div>
-        <!--end::Aside mobile toggle-->
-        <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="../../demo1/dist/index.html" class="d-lg-none">
                 <img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-30px" />
             </a>
         </div>
-        <!--end::Mobile logo-->
-        <!--begin::Wrapper-->
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
-            <!--begin::Navbar-->
             <div class="d-flex align-items-stretch" id="kt_header_nav">
-                <!--begin::Menu wrapper-->
                 <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu"
                     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
                     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end"
                     data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
                     data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
-                    <!--begin::Menu-->
                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                         id="#kt_header_menu" data-kt-menu="true">
                         <div class="menu-item me-lg-1">
@@ -57,7 +46,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -72,7 +60,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Pages</span>
                                         <span class="menu-arrow"></span>
@@ -4065,10 +4052,16 @@
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="../../demo1/dist/authentication/flows/basic/sign-in.html"
-                                    class="menu-link px-5">Sign Out</a>
-                            </div>
+                          <!--begin::Menu item-->
+<div class="menu-item px-5">
+    <a href="{{ route('logout') }}" class="menu-link px-5" 
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Sign Out
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+</div>
                             <!--end::Menu item-->
                             <!--begin::Menu separator-->
                             <div class="separator my-2"></div>
